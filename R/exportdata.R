@@ -1,25 +1,22 @@
-#' @title Exports Castor Data to R
+#' Downloads data from the Castor EDC database
 #'
-#' @description This package is a R wrapper to the Castor EDC API. Under the hood, it uses the Python wrapper (castoredc_api) to export data and transports it to R using feather.
+#' @param client_id The client id of your Castor account
+#' @param client_secret The client secret of your Castor account
+#' @param study_id The id of the study you wish to interact with
+#' @param url The url where your Castor database resides
 #'
-#' @param client_id,client_secret,study_id
+#' @return A list containing dataframes with all study, survey and report data.
+#' @export
 #'
-#' @return NULL
-#'
-#' @examples export_data('CLIENT_ID', 'CLIENT_SECRET', 'STUDY_ID', 'DATABASE_URL')
-#'
-#' @export export_data
-
-library(reticulate)
-library(arrow)
-
+#' @examples
+#' export_data('client_id', 'client_secret', 'study_id', 'data.castoredc.com')
 export_data <- function(client_id, client_secret, study_id, url) {
   # Deal with timezones, API returns timezone naive files for datapoints
   # And they shouldn't be changed
   current <- Sys.timezone()
   Sys.setenv(TZ="GMT")
 
-  api <- import("castoredc_api")
+  api <- reticulate::import("castoredc_api")
   study <- api$CastorStudy(client_id, client_secret, study_id, url)
   dataframes <- study$export_to_feather()
 
@@ -31,7 +28,6 @@ export_data <- function(client_id, client_secret, study_id, url) {
   Sys.setenv(TZ=current)
 
   return(dataframes)
-
 }
 
 read_and_delete <- function(path) {
