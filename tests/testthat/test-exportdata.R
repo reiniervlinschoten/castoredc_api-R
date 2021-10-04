@@ -2,7 +2,11 @@ context("test-export-data")
 
 test_that("export works", {
   skip_on_cran()
-  api_dfs <- export_data('client_id', "client_secret", "study_id", "data.castoredc.com")
+  api_dfs <- export_data(Sys.getenv(x = "CLIENT_ID"),
+                         Sys.getenv(x = "CLIENT_SECRET"),
+                         Sys.getenv(x = "STUDY_STUDY_ID"),
+                         "data.castoredc.com")
+
   study_df <- readr::read_delim("tests/testthat/testfiles/CastorStudy.csv",
                             delim = ";", escape_double = FALSE, trim_ws = TRUE)
   expect_equal(study_df, api_dfs["Study"])

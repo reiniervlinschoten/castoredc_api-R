@@ -1,22 +1,4 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
 # CastorEDCApi
-
-<!-- badges: start -->
-<!-- badges: end -->
 
 ## Features
 
@@ -27,13 +9,13 @@ It makes use of the Python wrapper under the hood (https://github.com/reiniervli
 
 You can install the released version of CastorEDCApi from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```r
 install.packages("CastorEDCApi")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
-``` r
+```r
 # install.packages("devtools")
 devtools::install_github("reiniervlinschoten/castoredc_api-R")
 ```
@@ -42,7 +24,7 @@ devtools::install_github("reiniervlinschoten/castoredc_api-R")
 
 You can export your data from Castor EDC with two lines of code.
 
-```{r example}
+```r
 library(CastorEDCApi)
 
 dataframes <- export_data('MYCLIENTID', 'MYCLIENTSECRET', 'MYSTUDYID', 'data.castoredc.com')
