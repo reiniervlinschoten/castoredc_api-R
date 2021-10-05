@@ -7,15 +7,16 @@ It makes use of the Python wrapper under the hood (https://github.com/reiniervli
 
 ## Installation
 
---- Not yet implemented (START) ---
+<!---
+
 You can install the released version of CastorEDCApi from [CRAN](https://CRAN.R-project.org) with:
 
 ```r
 install.packages("CastorEDCApi")
 ```
---- Not yet implemented (END) ---
+-->
 
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ```r
 # install.packages("devtools")
