@@ -22,5 +22,7 @@ A list containing dataframes with all study, survey and report data.
 Downloads data from the Castor EDC database
 }
 \examples{
+\dontrun{
 export_data('client_id', 'client_secret', 'study_id', 'data.castoredc.com')
+}
 }

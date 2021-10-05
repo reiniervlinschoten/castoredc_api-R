@@ -9,15 +9,17 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' export_data('client_id', 'client_secret', 'study_id', 'data.castoredc.com')
+#' }
 export_data <- function(client_id, client_secret, study_id, url) {
   # Deal with timezones, API returns timezone naive files for datapoints
   # And they shouldn't be changed
   current <- Sys.timezone()
   Sys.setenv(TZ="GMT")
 
-  api <- reticulate::import("castoredc_api")
-  study <- api$CastorStudy(client_id, client_secret, study_id, url)
+  castor_api <- reticulate::import("castoredc_api")
+  study <- castor_api$CastorStudy(client_id, client_secret, study_id, url)
   dataframes <- study$export_to_feather()
 
   dataframes$Study <- read_and_delete(dataframes$Study)

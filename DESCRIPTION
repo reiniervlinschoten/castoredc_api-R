@@ -1,6 +1,6 @@
 Package: CastorEDCApi
 Type: Package
-Title: Downloads Data From Castor EDC Database
+Title: Downloads Data from Castor EDC Database
 Version: 0.0.1
 Authors@R: person("Reinier", "van Linschoten", email = "mail@reiniervl.com",
                   role = c("aut", "cre"))
@@ -17,3 +17,9 @@ Imports:
     readr,
     arrow,
     reticulate
+Config/reticulate:
+  list(
+    packages = list(
+      list(package = "castoredc_api", pip = TRUE)
+    )
+  )
