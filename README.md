@@ -23,14 +23,16 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("reiniervlinschoten/castoredc_api-R")
 ```
 
-Then you can export your data from Castor EDC with two lines of code.  
-On the first run, this will first a conda environment with Python 3.8 called castoredc_api for reticulate.  
-It will then install the necessary Python packages.  
-Hereafter, and every run after this one, it will download your study data for analysis.
+Then you can export your data from Castor EDC with three lines of code.  
+First create and start the necessary Python environment.
+If this already exists, this will start and update the Python environment.
+Then you can download your study data for analysis.
 
 ```r
 library(CastorEDCApi)
-
+# Create/Start Python environment
+configure_python()
+# Exports data
 dataframes <- export_data('MYCLIENTID', 'MYCLIENTSECRET', 'MYSTUDYID', 'data.castoredc.com')
 ```
 
