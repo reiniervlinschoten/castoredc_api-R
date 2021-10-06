@@ -2,10 +2,10 @@
 
 ## Features
 
-This is an R package for exporting your data from Castor Electronic Data Capture (EDC) to R.
+This is an R package for exporting your data from Castor Electronic Data Capture (EDC) to R.  
 It makes use of the Python wrapper under the hood (https://github.com/reiniervlinschoten/castoredc_api).
 
-## Installation
+## Installation & Usage
 
 <!---
 
@@ -23,9 +23,10 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("reiniervlinschoten/castoredc_api-R")
 ```
 
-## Example
-
-You can export your data from Castor EDC with two lines of code.
+Then you can export your data from Castor EDC with two lines of code.  
+On the first run, this will first a conda environment with Python 3.8 called castoredc_api for reticulate.  
+It will then install the necessary Python packages.  
+Hereafter, and every run after this one, it will download your study data for analysis.
 
 ```r
 library(CastorEDCApi)
