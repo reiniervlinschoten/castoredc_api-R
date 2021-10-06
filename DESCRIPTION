@@ -17,9 +17,3 @@ Imports:
     readr,
     arrow,
     reticulate
-Config/reticulate:
-  list(
-    packages = list(
-      list(package = "castoredc_api")
-    )
-  )
