@@ -27,7 +27,11 @@ Then you can export your data from Castor EDC with three lines of code.
 First create and start the necessary Python environment.  
 If this already exists, this will start and update the Python environment.  
 Then you can download your study data for analysis.  
-
+For downloading you need your client-ID and client-secret (don't share these!) and url to the server.
+* client-ID and client-secret: Account -> Settings -> Castor EDC API
+* study-ID: Study -> Settings -> Castor Study ID
+* url: *region*.castoredc.com
+   
 ```r
 library(CastorEDCApi)
 
@@ -57,6 +61,7 @@ configure_python()
 ```
 
 If that doesn't work, copy the error with the output from the below functions and open an issue detailing your error.
+
 ```r
 reticulate::py_discover_config()
 reticulate::conda_list()
