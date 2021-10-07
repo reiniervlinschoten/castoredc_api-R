@@ -7,6 +7,7 @@
 #' configure_python()
 #' }
 configure_python <- function(libname, pkgname) {
+  tryCatch(reticulate::install_miniconda(), error=function(e) print("Miniconda Already Installed"))
   if (!("castoredc_api" %in% reticulate::conda_list()$name)) {
     reticulate::conda_create(envname="castoredc_api",
                              packages=c("castoredc_api", "pyarrow"),
