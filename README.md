@@ -24,16 +24,42 @@ devtools::install_github("reiniervlinschoten/castoredc_api-R")
 ```
 
 Then you can export your data from Castor EDC with three lines of code.  
-First create and start the necessary Python environment.
-If this already exists, this will start and update the Python environment.
-Then you can download your study data for analysis.
+First create and start the necessary Python environment.  
+If this already exists, this will start and update the Python environment.  
+Then you can download your study data for analysis.  
 
 ```r
 library(CastorEDCApi)
-# Create/Start Python environment
+
+# Create/Start Python environment, do this whenever you start a new R session
 configure_python()
+
 # Exports data
 dataframes <- export_data('MYCLIENTID', 'MYCLIENTSECRET', 'MYSTUDYID', 'data.castoredc.com')
+```
+
+During the same R session, you can reexport your data by just running the below code.
+
+```r
+# Exports data
+dataframes <- export_data('MYCLIENTID', 'MYCLIENTSECRET', 'MYSTUDYID', 'data.castoredc.com')
+```
+
+### Python Environment
+If an error occurs, this can be because your Python environment is not setup correctly. 
+First try setting up your Python environment:
+
+```r
+library(CastorEDCApi)
+
+# Create/Start Python environment, do this whenever you start a new R session
+configure_python()
+```
+
+If that doesn't work, copy the error with the output from the below functions and open an issue detailing your error.
+```r
+reticulate::py_discover_config()
+reticulate::conda_list()
 ```
 
 ## Data Formatting
@@ -42,7 +68,7 @@ Datetime fields are returned as strings (dd-mm-yyyy hh-mm)
 Numeric fields are all returned as floats.
 
 ## Missing Data
-Missing data is mostly handled through pandas (NaN).
+Missing data is mostly handled through standard NA.
 
 User-defined missing data is handled through its definitions in Castor.  
 For numeric and text-like variables, these values are -95, -96, -97, -98 and -99.  
