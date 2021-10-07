@@ -15,9 +15,6 @@
 export_data <- function(client_id, client_secret, study_id, url) {
   # Deal with timezones, API returns timezone naive files for datapoints
   # And they shouldn't be changed
-  current <- Sys.timezone()
-  Sys.setenv(TZ="GMT")
-
   castor_api <- reticulate::import("castoredc_api")
   study <- castor_api$CastorStudy(client_id, client_secret, study_id, url)
   dataframes <- study$export_to_feather()
@@ -26,12 +23,18 @@ export_data <- function(client_id, client_secret, study_id, url) {
   dataframes$Reports <- lapply(dataframes$Reports, read_and_delete)
   dataframes$Surveys <- lapply(dataframes$Surveys, read_and_delete)
 
-  # Reset timezone
-  Sys.setenv(TZ=current)
-
   return(dataframes)
 }
 
+#' Reads a feather file from path, deletes the file and returns the dataframe.
+#' @param path The path where the feather file resides
+#'
+#' @return A dataframe read from the feather file
+#'
+#' @examples
+#' \dontrun{
+#' read_and_delete(path_to_file)
+#' }
 read_and_delete <- function(path) {
   data <- arrow::read_feather(path)
   file.remove(path)

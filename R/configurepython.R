@@ -9,11 +9,12 @@
 configure_python <- function(libname, pkgname) {
   if (!("castoredc_api" %in% reticulate::conda_list()$name)) {
     reticulate::conda_create(envname="castoredc_api",
-                             packages=c("castoredc_api"),
+                             packages=c("castoredc_api", "pyarrow"),
                              python_version="3.8")
+    reticulate::use_condaenv("castoredc_api", required=TRUE)
   }
   else {
-    reticulate::use_condaenv("castoredc_api")
-    reticulate::conda_install(envname="castoredc_api", "castoredc_api")
+    reticulate::use_condaenv("castoredc_api", required=TRUE)
+    reticulate::conda_install(envname="castoredc_api", c("castoredc_api", "pyarrow"))
   }
 }
