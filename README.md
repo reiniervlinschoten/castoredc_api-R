@@ -31,7 +31,10 @@ For downloading you need your client-ID and client-secret (don't share these!), 
 * client-ID and client-secret: Account -> Settings -> Castor EDC API
 * study-ID: Study -> Settings -> Castor Study ID
 * url: *region*.castoredc.com
-   
+
+For exporting data: The endpoint that extracts data for the study can't be used if the authenticated user has a role within the study.  
+See: https://data.castoredc.com/api#/export/get_study__study_id__export_data
+
 ```r
 library(CastorEDCApi)
 
